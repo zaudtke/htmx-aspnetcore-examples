@@ -1,0 +1,1 @@
+# Demo App to re-create Examples from [htmx-org]("https://htmx.org/") in .NET 6
