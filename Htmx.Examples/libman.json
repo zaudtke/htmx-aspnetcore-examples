@@ -27,6 +27,19 @@
       "files": [
         "dist/htmx.min.js"
       ]
+    },
+    {
+      "provider": "unpkg",
+      "library": "jquery-validation@1.19.3",
+      "destination": "wwwroot/lib/jquery-validation/",
+      "files": [
+        "dist/additional-methods.js",
+        "dist/jquery.validate.min.js"
+      ]
+    },
+    {
+      "library": "jquery-validation-unobtrusive@3.2.12",
+      "destination": "wwwroot/lib/jquery-validation-unobtrusive/"
     }
   ]
 }
