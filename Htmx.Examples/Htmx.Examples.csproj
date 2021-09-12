@@ -14,7 +14,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="LIteDb\" />
 	  <Folder Include="Pages\Shared\Components\" />
 	</ItemGroup>
 
