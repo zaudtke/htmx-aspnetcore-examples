@@ -1,0 +1,18 @@
+﻿@model Htmx.Examples.Models.Contact
+
+<form hx-post="?handler=SaveForm" hx-target="this" hx-swap="outerHTML">
+    <div>
+        <label>First Name</label>
+        <input type="text" name="firstName" asp-for="FirstName">
+    </div>
+    <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" name="lastName" asp-for="LastName">
+    </div>
+    <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" name="email" asp-for="Email">
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>&nbsp;<button class="btn" hx-get="?handler=Form">Cancel</button>
+    @Html.AntiForgeryToken()
+</form>

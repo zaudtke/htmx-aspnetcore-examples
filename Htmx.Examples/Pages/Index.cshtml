@@ -5,6 +5,44 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Exploring Htmx Examples in .NET</h1>
+    <p>Learn about <a href="https://htmx.org/examples">Htmx</a>.</p>
+    <div class="text-left">
+        <p>
+            <strong>Random thoughts on how to proceed below.  Nothing set in stone.</strong>
+        </p>
+        <p>
+            Partials vs View Components?  I <em>think</em> I like the idea of View Components better.  Can use DI to get services to load it's own data 
+            instead of needing all data passed to it.  Think loading Dropdowns from Database.  Also not sure, if I want to mix and match where necessary, 
+            or stay with all 1 or the other in order to "simplify" dev experience.
+        </p>
+        <p>
+            Razor Pages vs MVC?  I <em>think</em> I like the idea of using Pages for actual landing spots in my site/routes.  Pages is very specific in what they are and 
+            to me stand out as obvious.  However...
+        </p>
+        <p>
+            I do like the idea of using a controller to render Partials or View Components, in additions to accepting PUT, POST, and DELETE instead of using additional 
+            Page Handlers.
+        </p>
+        <p>
+            Based on work project where the site is just a pass through to various micro services, I'm torn on .NET Mvc/Razor Page conventions vs preferred Vertical Slice...
+            Will be work in progress.
+        </p>
+        <p>
+            I guess, essentially:
+            <ul>
+                <li>Razor Pages for Broswer Destination</li>
+                <li>Parials for dead simple read only targets</li>
+                <li>View Components for more "complex" components</li>
+                <li>Controller essentially acting as an API to handle REqeust/Response for Partials and Components.  This Api, just happens to reutrn HTML instead of Json</li>
+            </ul>
+        </p>
+    
+    </div>
 </div>
+<div>
+    <ul>
+        <li><a href="/examples/click-to-edit">Click To Edit</a></li>
+    </ul>
+</div>
+
