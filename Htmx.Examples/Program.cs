@@ -43,12 +43,15 @@ app.Run();
 Task EnsureDb(IServiceProvider provider)
 {
     var db = provider.CreateScope().ServiceProvider.GetRequiredService<LiteDbContext>();
-
-    var count = db.Database.GetCollection<Contact>("Contacts").Count();
+    var collection = db.Database.GetCollection<Contact>("Contacts");
+    var count = collection.Count();
 
     if(count == 0)
     {
-        db.Database.GetCollection<Contact>("Contacts").Insert(new Contact { FirstName = "Allen", LastName = "Zaudtke", Email = "zaudtke@gmail.com" });
+        collection.Insert(new Contact { FirstName = "Allen", LastName = "Zaudtke", Email = "zaudtke@gmail.com" });
+        collection.Insert(new Contact { FirstName = "Michael", LastName = "Meyers", Email = "knife@halloween.com" });
+        collection.Insert(new Contact { FirstName = "Jason", LastName = "Voorhees", Email = "hockeymask@friday13th.com" });
+        collection.Insert(new Contact { FirstName = "John", LastName = "Kramer", Email = "jigsaw@saw.com" });
     }
     return Task.CompletedTask;
 }
