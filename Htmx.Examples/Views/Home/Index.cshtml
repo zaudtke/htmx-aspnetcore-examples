@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+    <h1 class="display-4">Exploring Htmx Examples in .NET</h1>
+    <p>Learn about <a href="https://htmx.org/examples" target="_blank">Htmx</a>.</p>
+    <div class="text-left">
+        <p>
+            <strong>Random thoughts on how to proceed below.  Nothing set in stone.</strong>
+        </p>
+        <p>
+            Partials vs View Components?  I <em>think</em> I like the idea of View Components better.  Can use DI to get services to load it's own data 
+            instead of needing all data passed to it.  Think loading Dropdowns from Database.  Also not sure, if I want to mix and match where necessary, 
+            or stay with all 1 or the other in order to "simplify" dev experience.
+        </p>
+        <p>
+            Razor Pages vs MVC?  While I like the concept of Razor Pages better for top level routing, the use of Handlers to deal with partials and view components 
+            doesn't feel natural, and causes friction.  Will go with MVC out of the box.  Plus, attempting to use both, will lead to Naming conflicts.  Example 
+            Contacts Controller and Contacts folder in Pages.  Sticking the Controllers behind /Api or /Gateway leads to the initial thought of JSON.  No mixing and matching at this time.
+        </p>
+        <p>
+            While I like the concept of Feature Folders and Vertical slices, I'm going to stay with MVC convention for now.  AKA Horizontal grouping, Controllers in Controllers folder, etc.
+        </p>
+        <p>
+            Demo Disclaimer:  I'm sharing Models between DB and UI, which should not be done in real projects.
+        </p>
+    </div>
+</div>
+<div>
+    <ul>
+        <li><a href="/examples/click-to-edit">Click To Edit</a></li>
+    </ul>
+</div>

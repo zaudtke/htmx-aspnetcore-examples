@@ -3,7 +3,7 @@ using Htmx.Examples.Configure;
 using LiteDB;
 using Microsoft.Extensions.Options;
 
-namespace Htmx.Examples.Data;
+namespace Htmx.Examples.Features.Data;
 
 public class LiteDbContext
 {

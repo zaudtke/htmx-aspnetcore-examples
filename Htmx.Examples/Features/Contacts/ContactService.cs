@@ -1,5 +1,4 @@
-﻿
-using Htmx.Examples.Data;
+﻿using Htmx.Examples.Features.Data;
 using Htmx.Examples.Models;
 using LiteDB;
 

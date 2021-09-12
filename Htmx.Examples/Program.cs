@@ -1,6 +1,6 @@
 
 using Htmx.Examples.Configure;
-using Htmx.Examples.Data;
+using Htmx.Examples.Features.Data;
 using Htmx.Examples.Features.Contacts;
 using Htmx.Examples.Models;
 
@@ -10,7 +10,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<LiteDbOptions>(builder.Configuration.GetSection("LiteDbOptions"));
 builder.Services.AddSingleton<LiteDbContext>();
 builder.Services.AddTransient<ContactService>();
-builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 
 
@@ -35,9 +34,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
 
-app.MapRazorPages();
 app.MapControllers();
 
 app.Run();
