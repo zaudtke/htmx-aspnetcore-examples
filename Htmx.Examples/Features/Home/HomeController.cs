@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace WebApplication1.Controllers;
+namespace Htmx.Examples.Features.Home;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
