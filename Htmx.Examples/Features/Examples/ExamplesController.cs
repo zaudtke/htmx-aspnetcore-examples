@@ -2,7 +2,7 @@
 using Htmx.Examples.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Htmx.Examples.Controllers;
+namespace Htmx.Examples.Features.Examples;
 
 [Route("[controller]")]
 public class ExamplesController : Controller
