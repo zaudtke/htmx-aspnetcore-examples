@@ -19,7 +19,7 @@ public class ExamplesController : Controller
     {
         var contact = await _contactService.GetContactById(1);
         return Request.IsHtmx()
-            ? PartialView("Partials/_ViewContact", contact)
+            ? PartialView("Partials/_ContactCard", contact)
             : View(contact);
     }
 
@@ -27,7 +27,7 @@ public class ExamplesController : Controller
     public async Task<IActionResult> EditContact(int id)
     {
         var contact = await _contactService.GetContactById(id);
-        return PartialView("Partials/_EditContact", contact);
+        return PartialView("Partials/_ContactForm", contact);
     }
 
     [HttpPost, Route("click-to-edit/{id:int}/Edit")]
