@@ -4,5 +4,5 @@
     <div><label>First Name:</label> @Model?.FirstName</div>
     <div><label>Last Name:</label> @Model?.LastName</div>
     <div><label>Email Address:</label> @Model?.Email</div>
-    <button hx-get=@Url.Action("EditContact", "Examples", new RouteValueDictionary{{"id", @Model.Id}}) class="btn btn-primary">Edit</button>
+    <button hx-get=@Url.Action("EditContact", "ClickToEdit", new RouteValueDictionary{{"id", @Model.Id}}) class="btn btn-primary">Edit</button>
 </div>

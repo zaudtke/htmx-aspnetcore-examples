@@ -1,6 +1,6 @@
 ﻿@model Contact
 
-<form hx-post=@Url.Action("EditContact", "Examples", new RouteValueDictionary{{"id", @Model.Id}}) hx-target="this" hx-swap="outerHTML">
+<form hx-post="@Url.Action("EditContact", "ClickToEdit", new RouteValueDictionary{{"id", @Model.Id}})" hx-target="this" hx-swap="outerHTML">
     <div>
         <label>First Name</label>
         <input type="text" name="firstName" asp-for="FirstName">
@@ -13,7 +13,7 @@
         <label>Email Address</label>
         <input type="email" name="email" asp-for="Email">
     </div>
-    <button class="btn btn-primary" type="submit">Submit</button>&nbsp;<button class="btn" hx-get="click-to-edit">Cancel</button>
+    <button class="btn btn-primary" type="submit">Submit</button>&nbsp;<button class="btn" hx-get="@Url.Action("Index", "ClickToEdit")">Cancel</button>
     @Html.HiddenFor(m => m.Id)
     @Html.AntiForgeryToken()
 </form>
