@@ -34,6 +34,6 @@ public class ExamplesController : Controller
     public async Task<IActionResult> EditContact(int id, Contact contact)
     {
         var updated = await _contactService.UpdateContact(contact);
-        return PartialView("Partials/_ViewContact", contact);
+        return RedirectToAction(nameof(ClickToEdit));
     }
 }
