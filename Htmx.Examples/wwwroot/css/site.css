@@ -63,3 +63,18 @@ body {
   white-space: nowrap;
   line-height: 60px;
 }
+
+th { padding:1em; text-align:left; border-bottom:2px solid #eee;f}
+td { padding: 1em; border-bottom:1px solid #eee; text-align:left;}
+
+.htmx-settling tr.deactivate td {
+    background: lightcoral;
+}
+
+.htmx-settling tr.activate td {
+    background: darkseagreen;
+}
+
+tr td {
+    transition: all 1.2s;
+}
