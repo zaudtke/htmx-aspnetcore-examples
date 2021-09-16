@@ -1,6 +1,7 @@
-﻿@model Contact
+﻿@using Microsoft.AspNetCore.Routing
+@model Contact
 
-<form hx-post="@Url.Action("EditContact", "ClickToEdit", new RouteValueDictionary{{"id", @Model.Id}})" hx-target="this" hx-swap="outerHTML">
+<form hx-post="@Url.Action("EditContact", "ClickToEdit", new RouteValueDictionary{{"id", @Model?.Id}})" hx-target="this" hx-swap="outerHTML">
     <div>
         <label>First Name</label>
         <input type="text" name="firstName" asp-for="FirstName">

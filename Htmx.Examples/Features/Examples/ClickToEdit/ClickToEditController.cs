@@ -1,6 +1,7 @@
 ﻿using Htmx.Examples.Features.Contacts;
 using Htmx.Examples.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Htmx.Examples.Features.Examples.ClickToEdit;
 

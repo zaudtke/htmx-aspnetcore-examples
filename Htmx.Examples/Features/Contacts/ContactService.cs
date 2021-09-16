@@ -1,6 +1,9 @@
 ﻿using Htmx.Examples.Features.Data;
 using Htmx.Examples.Models;
 using LiteDB;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Htmx.Examples.Features.Contacts;
 public class ContactService

@@ -6,6 +6,11 @@ using Htmx.Examples.Models;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Htmx.Examples.Configure.FeatureFolders;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
+using System.Threading.Tasks;
 
 var builder = WebApplication.CreateBuilder(args);
 
