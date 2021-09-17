@@ -51,7 +51,7 @@ namespace Htmx.Examples.Features.Examples.BulkUpdate
                 var villain = await _villainService.GetById(id);
                 if (villain is not null)
                 {
-                    villain.Dead = true;
+                    villain.Status = "Dead";
                     await _villainService.Update(villain);
                 }
             }
@@ -68,7 +68,7 @@ namespace Htmx.Examples.Features.Examples.BulkUpdate
                 var villain = await _villainService.GetById(id);
                 if (villain is not null)
                 {
-                    villain.Dead = false;
+                    villain.Status = "Alive";
                     await _villainService.Update(villain);
                 }
             }
@@ -85,7 +85,7 @@ namespace Htmx.Examples.Features.Examples.BulkUpdate
                     v.Id,
                     v.Name,
                     v.Movie,
-                    v.Dead ? "Dead" : "Alive",
+                    v.Status,
                     statusChangedCss.FirstOrDefault(t => v.Id == t.VillainId).CssClass ?? string.Empty
                 ))
             };

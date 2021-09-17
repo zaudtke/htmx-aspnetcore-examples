@@ -2,19 +2,35 @@
 @model Htmx.Examples.Domain.Villains.Villain
 
 <form hx-post="@Url.Action("Edit", "ClickToEdit", new RouteValueDictionary{{"id", @Model?.Id}})" hx-target="this" hx-swap="outerHTML">
+    <div class="form-group">
+        <label asp-for="Name">First Name</label>
+        <input type="text" class="form-control" asp-for="Name">
+    </div>
+    <div class="form-group">
+        <label asp-for="Movie">Movie</label>
+        <input type="text" class="form-control" asp-for="Movie">
+    </div>
     <div>
-        <label>First Name</label>
-        <input type="text" name="name" asp-for="Name">
+        <label>Status</label>
     </div>
     <div class="form-group">
-        <label>Movie</label>
-        <input type="text" name="movie" asp-for="Movie">
+        <div class="form-check form-check-inline">
+        <input type="radio" class="form-check-input" id="radio1" asp-for=Status value="Alive" />
+        <label class="form-check-label" for="radio1">Alive</label>
     </div>
+    <div class="form-check form-check-inline">
+        <input type="radio" class="form-check-input" id="radio2" asp-for=Status value="Dead" />
+        <label class="form-check-label" for="radio2">Dead</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input type="radio" class="form-check-input" id="radio3" asp-for=Status value="Unknown" />
+        <label class="form-check-label" for="radio3">Unknown</label>
+    </div>    
+    </div>
+    
     <div class="form-group">
-        <label>Dead</label>
-        <input type="checkbox" name="dead" asp-for="Dead" />
+        <button class="btn btn-primary" type="submit">Submit</button>&nbsp;<button class="btn btn-danger" hx-get="@Url.Action("Index", "ClickToEdit")">Cancel</button>
     </div>
-    <button class="btn btn-primary" type="submit">Submit</button>&nbsp;<button class="btn" hx-get="@Url.Action("Index", "ClickToEdit")">Cancel</button>
     @Html.HiddenFor(m => m.Id)
     @Html.AntiForgeryToken()
 </form>

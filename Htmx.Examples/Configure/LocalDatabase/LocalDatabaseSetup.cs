@@ -16,19 +16,19 @@ namespace Htmx.Examples.Configure.LocalDatabase
 
             if (count == 0)
             {
-                collection.Insert(new Villain { Name = "Michael Meyers", Movie = "Halloween", Dead = false });
-                collection.Insert(new Villain { Name = "Jason Voorhees", Movie = "Friday the 13th", Dead = true });
-                collection.Insert(new Villain { Name = "Jigsaw", Movie = "Saw", Dead = false });
-                collection.Insert(new Villain { Name = "Captain Spaulding", Movie = "House of 1000 Corpses", Dead = true });
-                collection.Insert(new Villain { Name = "Norman Bates", Movie = "Psycho", Dead = true });
-                collection.Insert(new Villain { Name = "Freddy Krueger", Movie = "Nightmare on Elm Street", Dead = true });
-                collection.Insert(new Villain { Name = "Leatherface", Movie = "Texas Chainsaw Masacre", Dead = true });
-                collection.Insert(new Villain { Name = "Chucky", Movie = "Child's Play", Dead = false });
-                collection.Insert(new Villain { Name = "Ghostface", Movie = "Scream", Dead = false });
-                collection.Insert(new Villain { Name = "Jack Torrance", Movie = "The Shining", Dead = true });
-                collection.Insert(new Villain { Name = "Damien", Movie = "The Omen", Dead = true });
-                collection.Insert(new Villain { Name = "Pennywise", Movie = "It", Dead = false });
-                collection.Insert(new Villain { Name = "Hannibal Lecter", Movie = "Silence of the Lambs", Dead = false });
+                collection.Insert(new Villain { Name = "Michael Meyers", Movie = "Halloween", Status = "Alive" });
+                collection.Insert(new Villain { Name = "Jason Voorhees", Movie = "Friday the 13th", Status = "Dead" });
+                collection.Insert(new Villain { Name = "Jigsaw", Movie = "Saw", Status = "Unknown" });
+                collection.Insert(new Villain { Name = "Captain Spaulding", Movie = "House of 1000 Corpses", Status = "Dead" });
+                collection.Insert(new Villain { Name = "Norman Bates", Movie = "Psycho", Status = "Dead" });
+                collection.Insert(new Villain { Name = "Freddy Krueger", Movie = "Nightmare on Elm Street", Status = "Dead" });
+                collection.Insert(new Villain { Name = "Leatherface", Movie = "Texas Chainsaw Masacre", Status = "Dead" });
+                collection.Insert(new Villain { Name = "Chucky", Movie = "Child's Play", Status = "Alive" });
+                collection.Insert(new Villain { Name = "Ghostface", Movie = "Scream", Status = "Unknown" });
+                collection.Insert(new Villain { Name = "Jack Torrance", Movie = "The Shining", Status = "Dead" });
+                collection.Insert(new Villain { Name = "Damien", Movie = "The Omen", Status = "Unknown" });
+                collection.Insert(new Villain { Name = "Pennywise", Movie = "It", Status = "Dead" });
+                collection.Insert(new Villain { Name = "Hannibal Lecter", Movie = "Silence of the Lambs", Status = "Dead" });
             }
             return Task.CompletedTask;
         }

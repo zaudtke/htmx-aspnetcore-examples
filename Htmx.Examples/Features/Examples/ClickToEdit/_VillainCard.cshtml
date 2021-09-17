@@ -2,8 +2,10 @@
 @model Htmx.Examples.Domain.Villains.Villain
 
 <div hx-target="this" hx-swap="outerHTML">
-    <div><label>First Name:</label> @Model?.Name</div>
-    <div><label>Movie:</label> @Model?.Movie</div>
-    <div><label>Status:</label> @(Model.Dead ? "Dead" : "Alive" )</div>
-    <button hx-get=@Url.Action("Edit", "ClickToEdit", new RouteValueDictionary{{"id", @Model?.Id}}) class="btn btn-primary">Edit</button>
+    <div class="form-group"><label style="width:5em;">Name:</label> @Model?.Name</div>
+    <div class="form-group"><label style="width:5em;">Movie:</label> @Model?.Movie</div>
+    <div class="form-group"><label style="width:5em;">Status:</label> @Model?.Status</div>
+    <div>
+        <button hx-get=@Url.Action("Edit", "ClickToEdit", new RouteValueDictionary{{"id", @Model?.Id}}) class="btn btn-primary">Edit</button>
+    </div>
 </div>
