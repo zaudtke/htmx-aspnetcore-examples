@@ -1,5 +1,4 @@
-﻿using Htmx.Examples.Features.Contacts;
-using Htmx.Examples.Models;
+﻿using Htmx.Examples.Domain.Villains;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -8,33 +7,33 @@ namespace Htmx.Examples.Features.Examples.ClickToEdit;
 [Route("examples/click-to-edit")]
 public class ClickToEditController : Controller
 {
-    private readonly ContactService _contactService;
+    private readonly VillainService _villainService;
 
-    public ClickToEditController(ContactService service)
+    public ClickToEditController(VillainService service)
     {
-        _contactService = service;
+        _villainService = service;
     }
 
     [HttpGet, Route("")]
     public async Task<IActionResult> Index()
     {
-        var contact = await _contactService.GetContactById(1);
+        var villain = await _villainService.GetById(1);
         return Request.IsHtmx()
-            ? PartialView("_ContactCard", contact)
-            : View(contact);
+            ? PartialView("_VillainCard", villain)
+            : View(villain);
     }
 
     [HttpGet, Route("/{id:int}/Edit")]
-    public async Task<IActionResult> EditContact(int id)
+    public async Task<IActionResult> Edit(int id)
     {
-        var contact = await _contactService.GetContactById(id);
-        return PartialView("_ContactForm", contact);
+        var contact = await _villainService.GetById(id);
+        return PartialView("_VillainForm", contact);
     }
 
     [HttpPost, Route("/{id:int}/Edit")]
-    public async Task<IActionResult> EditContact(int id, Contact contact)
+    public async Task<IActionResult> Edit(int id, Villain contact)
     {
-        var updated = await _contactService.UpdateContact(contact);
+        var updated = await _villainService.Update(contact);
         return RedirectToAction(nameof(Index));
     }
 }

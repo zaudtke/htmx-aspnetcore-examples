@@ -1,9 +1,8 @@
-﻿using Htmx.Examples.Features.Contacts;
+﻿using Htmx.Examples.Domain.Villains;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using System.Linq;
 using System.Collections.Generic;
-using Htmx.Examples.Models;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Htmx.Examples.Features.Examples.BulkUpdate
 {
@@ -11,11 +10,11 @@ namespace Htmx.Examples.Features.Examples.BulkUpdate
     public class BulkUpdateController : Controller
     {
 
-        private readonly ContactService _contactService;
+        private readonly VillainService _villainService;
 
-        public BulkUpdateController(ContactService service)
+        public BulkUpdateController(VillainService service)
         {
-            _contactService = service;
+            _villainService = service;
         }
 
         [HttpGet, Route("")]
@@ -23,71 +22,71 @@ namespace Htmx.Examples.Features.Examples.BulkUpdate
         {
             var changedIds = new List<(int, string)>();
 
-            if(TempData.ContainsKey("activatedIds"))
+            if(TempData.ContainsKey("resurectedIds"))
             {
-                var list = TempData["activatedIds"]?.ToString()?.Split(',').Select(i => (int.Parse(i), "activate"));
+                var list = TempData["resurectedIds"]?.ToString()?.Split(',').Select(i => (int.Parse(i), "activate"));
                 if (list is not null)
                     changedIds.AddRange(list);
             }
-            if (TempData.ContainsKey("deactivatedIds"))
+            if (TempData.ContainsKey("killedIds"))
             {
-                var list = TempData["deactivatedIds"]?.ToString()?.Split(',').Select(i => (int.Parse(i), "deactivate"));
+                var list = TempData["killedIds"]?.ToString()?.Split(',').Select(i => (int.Parse(i), "deactivate"));
                 if (list is not null)
                     changedIds.AddRange(list);
             }
 
-            var contacts = await _contactService.GetContacts();
-            var vm = BuildViewModel(contacts, changedIds);
+            var villains = await _villainService.GetAll();
+            var vm = BuildViewModel(villains, changedIds);
             
             return Request.IsHtmx()
-            ? PartialView("_ContactRows", vm.Contacts)
+            ? PartialView("_VillainRows", vm.Villains)
             : View(vm);
         }
 
-        [HttpPost, Route("Activate")]
-        public async Task<IActionResult> Activate(int[] ids)
+        [HttpPost, Route("kill")]
+        public async Task<IActionResult> Kill(int[] ids)
         {
             foreach(var id in ids)
             {
-                var contact = await _contactService.GetContactById(id);
-                if (contact is not null)
+                var villain = await _villainService.GetById(id);
+                if (villain is not null)
                 {
-                    contact.Active = true;
-                    await _contactService.UpdateContact(contact);
+                    villain.Dead = true;
+                    await _villainService.Update(villain);
                 }
             }
-            TempData["activatedIds"] = string.Join(',', ids);
+            TempData["killedIds"] = string.Join(',', ids);
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpPost, Route("Deactivate")]
-        public async Task<IActionResult> Deactivate(int[] ids)
+        [HttpPost, Route("resurect")]
+        public async Task<IActionResult> Resurect(int[] ids)
         {
             var updatedIds = ids.Select(i => (i, "activate")).ToList();
             foreach (var id in ids)
             {
-                var contact = await _contactService.GetContactById(id);
-                if (contact is not null)
+                var villain = await _villainService.GetById(id);
+                if (villain is not null)
                 {
-                    contact.Active = false;
-                    await _contactService.UpdateContact(contact);
+                    villain.Dead = false;
+                    await _villainService.Update(villain);
                 }
             }
-            TempData["deactivatedIds"] = string.Join(',', ids);
+            TempData["resurectedIds"] = string.Join(',', ids);
             return RedirectToAction(nameof(Index));
         }
 
-        private BulkUpdateViewModel BuildViewModel(IEnumerable<Contact> contacts, List<(int ContactId, string CssClass)> statusChangedCss)
+        private BulkUpdateViewModel BuildViewModel(IEnumerable<Villain> villains, List<(int VillainId, string CssClass)> statusChangedCss)
         {
             var vm = new BulkUpdateViewModel
             {
-                Contacts = contacts.Select(c => new ContactListItem
+                Villains = villains.Select(v => new VillainListItem
                 (
-                    c.Id,
-                    string.Concat(c.FirstName, " ", c.LastName),
-                    c.Email,
-                    c.Active ? "Active" : "Inactive",
-                    statusChangedCss.FirstOrDefault(t => c.Id == t.ContactId).CssClass ?? string.Empty
+                    v.Id,
+                    v.Name,
+                    v.Movie,
+                    v.Dead ? "Dead" : "Alive",
+                    statusChangedCss.FirstOrDefault(t => v.Id == t.VillainId).CssClass ?? string.Empty
                 ))
             };
 

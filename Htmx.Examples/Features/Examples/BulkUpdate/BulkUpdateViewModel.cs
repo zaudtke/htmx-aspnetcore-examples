@@ -4,8 +4,8 @@ namespace Htmx.Examples.Features.Examples.BulkUpdate
 {
     public record BulkUpdateViewModel
     {
-        public IEnumerable<ContactListItem> Contacts { get; init; } = new List<ContactListItem>();
+        public IEnumerable<VillainListItem> Villains { get; init; } = new List<VillainListItem>();
     }
 
-    public record ContactListItem(int Id, string Name, string Email, string Status, string StatusChangedClass);
+    public record VillainListItem(int Id, string Name, string Movie, string Status, string StatusChangedClass);
 }

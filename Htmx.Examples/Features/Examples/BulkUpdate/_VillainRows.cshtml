@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Htmx.Examples.Features.Examples.BulkUpdate.VillainListItem>;
+
+    @foreach (var villain in Model!)
+            {
+            <tr class="@villain.StatusChangedClass">
+                <td><input type='checkbox' name='ids' value=@villain.Id></td>
+                <td>@villain.Name</td>
+                <td>@villain.Movie</td>
+                <td>@villain.Status</td>
+            </tr>    
+            }

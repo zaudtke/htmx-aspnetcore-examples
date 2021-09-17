@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Htmx.Examples.Features.Examples.BulkUpdate.VillainListItem>;
+
+<form id="checked-villains">
+    <table>
+      <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Movie</th>
+            <th>Status</th>
+          </tr>
+      </thead>
+      <tbody id="tbody">
+        <partial name="_VillainRows" model=Model />
+      </tbody>
+    </table>
+</form>
+<div hx-include="#checked-villains" hx-target="#tbody" style="padding-top:2em;">
+    <a class="btn btn-primary" hx-post="/examples/bulk-update/kill" href="">Kill</a>
+    <a class="btn btn-primary" hx-post="/examples/bulk-update/resurect" href="">Resurect</a>
+</div>

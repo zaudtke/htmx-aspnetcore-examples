@@ -1,0 +1,20 @@
+﻿@using Microsoft.AspNetCore.Routing
+@model Htmx.Examples.Domain.Villains.Villain
+
+<form hx-post="@Url.Action("Edit", "ClickToEdit", new RouteValueDictionary{{"id", @Model?.Id}})" hx-target="this" hx-swap="outerHTML">
+    <div>
+        <label>First Name</label>
+        <input type="text" name="name" asp-for="Name">
+    </div>
+    <div class="form-group">
+        <label>Movie</label>
+        <input type="text" name="movie" asp-for="Movie">
+    </div>
+    <div class="form-group">
+        <label>Dead</label>
+        <input type="checkbox" name="dead" asp-for="Dead" />
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>&nbsp;<button class="btn" hx-get="@Url.Action("Index", "ClickToEdit")">Cancel</button>
+    @Html.HiddenFor(m => m.Id)
+    @Html.AntiForgeryToken()
+</form>
