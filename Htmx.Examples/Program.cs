@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Htmx.Examples.Configure.LocalDatabase;
 using Htmx.Examples.Domain.Data;
 using Htmx.Examples.Domain.Villains;
+using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +34,7 @@ builder.Services.Configure<RazorViewEngineOptions>(options =>
     options.ViewLocationFormats.Add("/Features/{1}/{0}.cshtml"); // default: /Features/{0}/{1}.cshtml
     options.ViewLocationExpanders.Add(new FeatureViewLocationExpander());
 });
+builder.Services.AddMediatR(typeof(Program));
 
 var app = builder.Build();
 

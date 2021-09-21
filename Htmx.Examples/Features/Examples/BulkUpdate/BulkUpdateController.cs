@@ -1,4 +1,5 @@
 ﻿using Htmx.Examples.Domain.Villains;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,12 @@ namespace Htmx.Examples.Features.Examples.BulkUpdate
     {
 
         private readonly VillainService _villainService;
+        private readonly IMediator _mediator;
 
-        public BulkUpdateController(VillainService service)
+        public BulkUpdateController(VillainService service, IMediator mediator)
         {
             _villainService = service;
+            _mediator = mediator;
         }
 
         [HttpGet, Route("")]
@@ -35,9 +38,8 @@ namespace Htmx.Examples.Features.Examples.BulkUpdate
                     changedIds.AddRange(list);
             }
 
-            var villains = await _villainService.GetAll();
-            var vm = BuildViewModel(villains, changedIds);
-            
+            var vm = await _mediator.Send(new ViewVillains.Query{ ChangedVillains = changedIds });
+
             return Request.IsHtmx()
             ? PartialView("_VillainRows", vm.Villains)
             : View(vm);
@@ -46,51 +48,17 @@ namespace Htmx.Examples.Features.Examples.BulkUpdate
         [HttpPost, Route("kill")]
         public async Task<IActionResult> Kill(int[] ids)
         {
-            foreach(var id in ids)
-            {
-                var villain = await _villainService.GetById(id);
-                if (villain is not null)
-                {
-                    villain.Status = "Dead";
-                    await _villainService.Update(villain);
-                }
-            }
-            TempData["killedIds"] = string.Join(',', ids);
+            var result = await _mediator.Send(new UpdateVillains.Command(ids, "Dead"));
+            TempData["killedIds"] = string.Join(',', result);
             return RedirectToAction(nameof(Index));
         }
 
         [HttpPost, Route("resurect")]
         public async Task<IActionResult> Resurect(int[] ids)
         {
-            var updatedIds = ids.Select(i => (i, "activate")).ToList();
-            foreach (var id in ids)
-            {
-                var villain = await _villainService.GetById(id);
-                if (villain is not null)
-                {
-                    villain.Status = "Alive";
-                    await _villainService.Update(villain);
-                }
-            }
-            TempData["resurectedIds"] = string.Join(',', ids);
+            var result = await _mediator.Send(new UpdateVillains.Command(ids, "Alive"));
+            TempData["resurectedIds"] = string.Join(',', result);
             return RedirectToAction(nameof(Index));
-        }
-
-        private BulkUpdateViewModel BuildViewModel(IEnumerable<Villain> villains, List<(int VillainId, string CssClass)> statusChangedCss)
-        {
-            var vm = new BulkUpdateViewModel
-            {
-                Villains = villains.Select(v => new VillainListItem
-                (
-                    v.Id,
-                    v.Name,
-                    v.Movie,
-                    v.Status,
-                    statusChangedCss.FirstOrDefault(t => v.Id == t.VillainId).CssClass ?? string.Empty
-                ))
-            };
-
-            return vm;
         }
     }
 }
