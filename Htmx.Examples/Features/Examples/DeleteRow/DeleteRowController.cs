@@ -1,4 +1,4 @@
-﻿using Htmx.Examples.Domain.Villains;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -9,24 +9,22 @@ namespace Htmx.Examples.Features.Examples.DeleteRow
     public class DeleteRowController : Controller
     {
 
-        private readonly VillainService _villainService;
+        private readonly IMediator _mediator;
 
-        public DeleteRowController(VillainService villainService)
-        {
-            _villainService = villainService;
-        }
+        public DeleteRowController(IMediator mediator) => _mediator = mediator;
+        
 
         [HttpGet, Route("")]
         public async Task<IActionResult> Index()
         {
-            var villains = await _villainService.GetAll();
-            return View(villains);
+            var result = await _mediator.Send(new ViewVillains.Query());
+            return View(result);
         }
 
         [HttpPost, Route("{id:int}")]
         public async Task<IActionResult> Index(int id)
         {
-            await _villainService.Delete(id);
+            var result = await _mediator.Send(new DeleteVillain.Command(id));
             return new EmptyResult();
         }
     }

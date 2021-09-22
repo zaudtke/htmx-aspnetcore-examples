@@ -1,8 +1,6 @@
-﻿using Htmx.Examples.Domain.Villains;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using System.Linq;
-using MediatR;
 
 namespace Htmx.Examples.Features.Examples.ClickToLoad
 {
