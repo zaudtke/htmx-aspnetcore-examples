@@ -1,7 +1,18 @@
-﻿@model Htmx.Examples.Features.Examples.ClickToLoad.ClickToLoadViewModel;
+﻿@model Htmx.Examples.Features.Examples.ClickToLoad.ViewVillains.Result
 
 @{
     ViewData["Title"] = "Builk Update";
 }
 
-<partial name="_VillainList" model=@Model>
+<table class="table">
+    <thead class=thead-dark>
+        <tr>
+            <th>Name</th>
+            <th>Movie</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <partial name="_VillainRows" model=Model />
+    </tbody>
+</table>
