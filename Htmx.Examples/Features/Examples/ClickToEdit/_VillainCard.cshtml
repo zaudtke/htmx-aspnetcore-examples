@@ -1,11 +1,11 @@
 ﻿@using Microsoft.AspNetCore.Routing
-@model Htmx.Examples.Domain.Villains.Villain
+@model Htmx.Examples.Features.Examples.ClickToEdit.ViewVillain.Result
 
 <div hx-target="this" hx-swap="outerHTML">
-    <div class="form-group"><label style="width:5em;">Name:</label> @Model?.Name</div>
-    <div class="form-group"><label style="width:5em;">Movie:</label> @Model?.Movie</div>
-    <div class="form-group"><label style="width:5em;">Status:</label> @Model?.Status</div>
+    <div class="form-group"><label style="width:5em;">Name:</label> @Model?.Villain.Name</div>
+    <div class="form-group"><label style="width:5em;">Movie:</label> @Model?.Villain.Movie</div>
+    <div class="form-group"><label style="width:5em;">Status:</label> @Model?.Villain.Status</div>
     <div>
-        <button hx-get=@Url.Action("Edit", "ClickToEdit", new RouteValueDictionary{{"id", @Model?.Id}}) class="btn btn-primary">Edit</button>
+        <button hx-get=@Url.Action("Edit", "ClickToEdit", new RouteValueDictionary{{"id", @Model?.Villain.Id}}) class="btn btn-primary">Edit</button>
     </div>
 </div>

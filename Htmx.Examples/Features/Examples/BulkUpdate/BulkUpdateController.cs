@@ -1,5 +1,4 @@
-﻿using Htmx.Examples.Domain.Villains;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +9,9 @@ namespace Htmx.Examples.Features.Examples.BulkUpdate
     [Route("examples/bulk-update")]
     public class BulkUpdateController : Controller
     {
-
-        private readonly VillainService _villainService;
         private readonly IMediator _mediator;
 
-        public BulkUpdateController(VillainService service, IMediator mediator)
-        {
-            _villainService = service;
-            _mediator = mediator;
-        }
+        public BulkUpdateController(IMediator mediator) => _mediator = mediator;
 
         [HttpGet, Route("")]
         public async Task<IActionResult> Index()

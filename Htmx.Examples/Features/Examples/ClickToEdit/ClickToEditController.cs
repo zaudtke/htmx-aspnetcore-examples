@@ -1,4 +1,4 @@
-﻿using Htmx.Examples.Domain.Villains;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -7,17 +7,14 @@ namespace Htmx.Examples.Features.Examples.ClickToEdit;
 [Route("examples/click-to-edit")]
 public class ClickToEditController : Controller
 {
-    private readonly VillainService _villainService;
+    private readonly IMediator _mediator;
 
-    public ClickToEditController(VillainService service)
-    {
-        _villainService = service;
-    }
+    public ClickToEditController(IMediator mmediator) => _mediator = mmediator;
 
     [HttpGet, Route("")]
     public async Task<IActionResult> Index()
     {
-        var villain = await _villainService.GetById(1);
+        var villain = await _mediator.Send(new ViewVillain.Query(1));
         return Request.IsHtmx()
             ? PartialView("_VillainCard", villain)
             : View(villain);
@@ -26,14 +23,14 @@ public class ClickToEditController : Controller
     [HttpGet, Route("/{id:int}/Edit")]
     public async Task<IActionResult> Edit(int id)
     {
-        var contact = await _villainService.GetById(id);
-        return PartialView("_VillainForm", contact);
+        var result = await _mediator.Send(new EditVillain.Query(id));
+        return PartialView("_VillainForm", result);
     }
 
     [HttpPost, Route("/{id:int}/Edit")]
-    public async Task<IActionResult> Edit(int id, Villain contact)
+    public async Task<IActionResult> Edit(int id, Villain villain)
     {
-        var updated = await _villainService.Update(contact);
+        var result = await _mediator.Send(new EditVillain.Command(villain));
         return RedirectToAction(nameof(Index));
     }
 }

@@ -21,9 +21,13 @@ namespace Htmx.Examples.Domain.Villains
             return Task.FromResult(_liteDatabase.GetCollection<Villain>(VillainCollectionName).FindAll());
         }
 
-        public Task<Villain?> GetById(int id)
+        public Task<Villain> GetById(int id)
         {
-            return Task.FromResult(_liteDatabase.GetCollection<Villain>(VillainCollectionName).Find(x => x.Id == id).FirstOrDefault());
+            var dbVillain = _liteDatabase.GetCollection<Villain>(VillainCollectionName).Find(x => x.Id == id).FirstOrDefault();
+
+            if (dbVillain is null) throw new System.Exception($"Can't find Villain {id} in database");
+
+            return Task.FromResult(dbVillain);
         }
 
         public Task<int> Add(Villain contact)
