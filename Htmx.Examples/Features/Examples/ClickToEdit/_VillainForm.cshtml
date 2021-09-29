@@ -3,7 +3,7 @@
 
 <form hx-post="@Url.Action("Edit", "ClickToEdit", new RouteValueDictionary{{"id", @Model?.Villain.Id}})" hx-target="this" hx-swap="outerHTML">
     <div class="form-group">
-        <label asp-for="Villain.Name">First Name</label>
+        <label asp-for="Villain.Name">Name</label>
         <input type="text" class="form-control" asp-for="Villain.Name">
     </div>
     <div class="form-group">

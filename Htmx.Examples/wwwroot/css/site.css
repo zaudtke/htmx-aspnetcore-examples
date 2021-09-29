@@ -91,3 +91,11 @@ tr.htmx-swapping td {
 img {
     transition: opacity 300ms ease-in;
 }
+
+.field-validation-error {
+    color: red;
+}
+
+input.input-validation-error {
+    border: 1px solid #dc3545;
+}

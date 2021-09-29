@@ -30,14 +30,14 @@ namespace Htmx.Examples.Domain.Villains
             return Task.FromResult(dbVillain);
         }
 
-        public Task<int> Add(Villain contact)
+        public Task<int> Add(Villain villain)
         {
-            return Task.FromResult(_liteDatabase.GetCollection<Villain>(VillainCollectionName).Insert(contact).AsInt32);
+            return Task.FromResult(_liteDatabase.GetCollection<Villain>(VillainCollectionName).Insert(villain).AsInt32);
         }
 
-        public Task<bool> Update(Villain contact)
+        public Task<bool> Update(Villain villain)
         {
-            return Task.FromResult(_liteDatabase.GetCollection<Villain>(VillainCollectionName).Update(contact));
+            return Task.FromResult(_liteDatabase.GetCollection<Villain>(VillainCollectionName).Update(villain));
         }
 
         public Task<bool> Delete(int id)
