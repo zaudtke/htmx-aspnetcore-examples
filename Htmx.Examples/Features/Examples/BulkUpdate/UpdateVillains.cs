@@ -4,36 +4,35 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Htmx.Examples.Features.Examples.BulkUpdate
+namespace Htmx.Examples.Features.Examples.BulkUpdate;
+
+public class UpdateVillains
 {
-    public class UpdateVillains
+    public record Command(int[] Ids, string Status) : IRequest<int[]>;
+
+    public class CommandHandler : IRequestHandler<Command, int[]>
     {
-        public record Command(int[] Ids, string Status) : IRequest<int[]>;
+        private readonly VillainService _villainService;
 
-        public class CommandHandler : IRequestHandler<Command, int[]>
+        public CommandHandler(VillainService service) => _villainService = service;
+
+        public async Task<int[]> Handle(Command request, CancellationToken cancellationToken)
         {
-            private readonly VillainService _villainService;
-
-            public CommandHandler(VillainService service) => _villainService = service;
-
-            public async Task<int[]> Handle(Command request, CancellationToken cancellationToken)
+            var updatedIds = new List<int>();
+            foreach (var id in request.Ids)
             {
-                var updatedIds = new List<int>();
-                foreach (var id in request.Ids)
+                var villain = await _villainService.GetById(id);
+                if (villain is not null)
                 {
-                    var villain = await _villainService.GetById(id);
-                    if (villain is not null)
+                    villain.Status = request.Status;
+                    if (await _villainService.Update(villain))
                     {
-                        villain.Status = request.Status;
-                        if (await _villainService.Update(villain))
-                        {
-                            updatedIds.Add(villain.Id);
-                        }
+                        updatedIds.Add(villain.Id);
                     }
                 }
-
-                return updatedIds.ToArray();
             }
+
+            return updatedIds.ToArray();
         }
     }
 }

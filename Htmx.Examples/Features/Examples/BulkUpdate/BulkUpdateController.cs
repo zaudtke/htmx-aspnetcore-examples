@@ -4,54 +4,53 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Htmx.Examples.Features.Examples.BulkUpdate
+namespace Htmx.Examples.Features.Examples.BulkUpdate;
+
+[Route("examples/bulk-update")]
+public class BulkUpdateController : Controller
 {
-    [Route("examples/bulk-update")]
-    public class BulkUpdateController : Controller
+    private readonly IMediator _mediator;
+
+    public BulkUpdateController(IMediator mediator) => _mediator = mediator;
+
+    [HttpGet, Route("")]
+    public async Task<IActionResult> Index()
     {
-        private readonly IMediator _mediator;
+        var changedIds = new List<(int, string)>();
 
-        public BulkUpdateController(IMediator mediator) => _mediator = mediator;
-
-        [HttpGet, Route("")]
-        public async Task<IActionResult> Index()
+        if (TempData.ContainsKey("resurectedIds"))
         {
-            var changedIds = new List<(int, string)>();
-
-            if(TempData.ContainsKey("resurectedIds"))
-            {
-                var list = TempData["resurectedIds"]?.ToString()?.Split(',').Select(i => (int.Parse(i), "activate"));
-                if (list is not null)
-                    changedIds.AddRange(list);
-            }
-            if (TempData.ContainsKey("killedIds"))
-            {
-                var list = TempData["killedIds"]?.ToString()?.Split(',').Select(i => (int.Parse(i), "deactivate"));
-                if (list is not null)
-                    changedIds.AddRange(list);
-            }
-
-            var vm = await _mediator.Send(new ViewVillains.Query{ ChangedVillains = changedIds });
-
-            return Request.IsHtmx()
-            ? PartialView("_VillainRows", vm.Villains)
-            : View(vm);
+            var list = TempData["resurectedIds"]?.ToString()?.Split(',').Select(i => (int.Parse(i), "activate"));
+            if (list is not null)
+                changedIds.AddRange(list);
+        }
+        if (TempData.ContainsKey("killedIds"))
+        {
+            var list = TempData["killedIds"]?.ToString()?.Split(',').Select(i => (int.Parse(i), "deactivate"));
+            if (list is not null)
+                changedIds.AddRange(list);
         }
 
-        [HttpPost, Route("kill")]
-        public async Task<IActionResult> Kill(int[] ids)
-        {
-            var result = await _mediator.Send(new UpdateVillains.Command(ids, "Dead"));
-            TempData["killedIds"] = string.Join(',', result);
-            return RedirectToAction(nameof(Index));
-        }
+        var vm = await _mediator.Send(new ViewVillains.Query { ChangedVillains = changedIds });
 
-        [HttpPost, Route("resurect")]
-        public async Task<IActionResult> Resurect(int[] ids)
-        {
-            var result = await _mediator.Send(new UpdateVillains.Command(ids, "Alive"));
-            TempData["resurectedIds"] = string.Join(',', result);
-            return RedirectToAction(nameof(Index));
-        }
+        return Request.IsHtmx()
+        ? PartialView("_VillainRows", vm.Villains)
+        : View(vm);
+    }
+
+    [HttpPost, Route("kill")]
+    public async Task<IActionResult> Kill(int[] ids)
+    {
+        var result = await _mediator.Send(new UpdateVillains.Command(ids, "Dead"));
+        TempData["killedIds"] = string.Join(',', result);
+        return RedirectToAction(nameof(Index));
+    }
+
+    [HttpPost, Route("resurect")]
+    public async Task<IActionResult> Resurect(int[] ids)
+    {
+        var result = await _mediator.Send(new UpdateVillains.Command(ids, "Alive"));
+        TempData["resurectedIds"] = string.Join(',', result);
+        return RedirectToAction(nameof(Index));
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace Htmx.Examples.Features.Home;
 public class HomeController : Controller

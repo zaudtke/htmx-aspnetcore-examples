@@ -3,22 +3,21 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Htmx.Examples.Features.Examples.DeleteRow
+namespace Htmx.Examples.Features.Examples.DeleteRow;
+
+public class DeleteVillain
 {
-    public class DeleteVillain
+    public record Command(int Id) : IRequest<bool>;
+
+    public class CommandHandler : IRequestHandler<Command, bool>
     {
-        public record Command(int Id) : IRequest<bool>;
+        private readonly VillainService _villainService;
 
-        public class CommandHandler : IRequestHandler<Command, bool>
+        public CommandHandler(VillainService service) => _villainService = service;
+
+        public async Task<bool> Handle(Command request, CancellationToken cancellationToken)
         {
-            private readonly VillainService _villainService;
-
-            public CommandHandler(VillainService service) => _villainService = service;
-
-            public async Task<bool> Handle(Command request, CancellationToken cancellationToken)
-            {
-                return await _villainService.Delete(request.Id);
-            }
+            return await _villainService.Delete(request.Id);
         }
     }
 }
