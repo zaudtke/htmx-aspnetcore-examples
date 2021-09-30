@@ -1,0 +1,17 @@
+﻿@model Htmx.Examples.Features.Examples.InfiniteScroll.ViewVillains.Result
+
+@foreach (var villain in Model!.Villains.Take(19))
+{
+    <tr>
+        <td>@villain.Id</td>
+        <td>@villain.Name</td>
+    </tr>
+}
+@{ var last = Model!.Villains.Last(); }
+
+    <tr hx-get=@Model.LoadMoreUrl
+        hx-trigger="revealed"
+        hx-swap="afterend">
+        <td>@last.Id</td>
+        <td>@last.Name</td>
+    </tr>
