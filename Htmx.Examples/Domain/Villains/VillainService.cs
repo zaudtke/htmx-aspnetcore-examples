@@ -1,5 +1,6 @@
 ﻿using Htmx.Examples.Domain.Data;
 using LiteDB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -43,5 +44,23 @@ public class VillainService
     public Task<bool> Delete(int id)
     {
         return Task.FromResult(_liteDatabase.GetCollection<Villain>(VillainCollectionName).Delete(new BsonValue(id)));
+    }
+
+    public async Task<IEnumerable<Villain>> SearchByName(string search)
+    {
+        var collection = _liteDatabase.GetCollection<Villain>(VillainCollectionName);
+        collection.EnsureIndex("Name");
+        var list = new List<Villain>();
+        if (string.IsNullOrEmpty(search))
+        {
+            var all = await GetAll();
+            list = all.ToList();
+        }
+        else
+        {
+            list = collection.Find(v => v.Name.Contains(search, StringComparison.InvariantCultureIgnoreCase)).ToList();
+        }
+        
+        return list!.FindAll(v => v.Name.Contains(search ?? "", StringComparison.InvariantCultureIgnoreCase));
     }
 }
