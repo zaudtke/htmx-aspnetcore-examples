@@ -12,12 +12,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Htmx" Version="0.0.10" />
-		<PackageReference Include="Htmx.TagHelpers" Version="0.0.10" />
+		<PackageReference Include="Htmx" Version="0.0.12" />
+		<PackageReference Include="Htmx.TagHelpers" Version="0.0.12" />
 		<PackageReference Include="LiteDB" Version="5.0.11" />
 		<PackageReference Include="MediatR" Version="9.0.0" />
 		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.0-rc.1.21452.15" />
-		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.0-rc.1.21464.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.0-rc.2.21480.10" />
+		<!--<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.0-rc.2.21511.1" />-->
 	</ItemGroup>
 </Project>
