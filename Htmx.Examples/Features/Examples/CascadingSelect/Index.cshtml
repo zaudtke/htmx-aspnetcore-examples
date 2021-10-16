@@ -13,7 +13,7 @@
             hx-target="#movies"
             hx-indicator=".htmx-indicator">
 
-            @foreach(var series in Model?.Series)
+            @foreach(var series in Model!.Series)
             {
                 <option value="@series">@series</option>
             }   
