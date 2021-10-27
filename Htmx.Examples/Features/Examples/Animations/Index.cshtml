@@ -1,9 +1,20 @@
 ﻿@{
     ViewData["Title"] = "Animations";
 }
+
+<style>
+    .fade-me-out.htmx-swapping{opacity: 0; transition: opacity 1s ease-out;}
+</style>
+
 <h1>Animations</h1>
 
-<h2>Basic Animations</h2>
-
-<h3>Color Throb</h3>
+<strong>Color Throb</strong>
 <partial name="_ColorThrob" ></partial>
+
+
+<h3 style="margin-top:10px;">Fade Out On Swap</h3>
+<button class="btn btn-primary fade-me-out"
+    hx-delete="animations/delete"
+    hx-swap="outerHTML swap:1s">
+    Fade me out    
+</button>

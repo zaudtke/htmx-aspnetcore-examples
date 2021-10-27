@@ -22,4 +22,10 @@ public class AnimationsController : Controller
         };
         return PartialView("_ColorThrob", color);
     }
+
+    [HttpDelete, Route("delete")]
+    public IActionResult Delete()
+    {
+        return Ok("");
+    }
 }
