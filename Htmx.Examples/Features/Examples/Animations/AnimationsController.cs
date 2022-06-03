@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Htmx.Examples.Features.Examples.Animations;
 
@@ -27,5 +28,11 @@ public class AnimationsController : Controller
     public IActionResult Delete()
     {
         return Ok("");
+    }
+
+    [HttpPost, Route("fadein")]
+    public IActionResult FadeIn()
+    {
+        return PartialView("_FadeInButton", "From Server");
     }
 }

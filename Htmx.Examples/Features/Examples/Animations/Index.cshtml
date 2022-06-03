@@ -1,9 +1,12 @@
 ﻿@{
     ViewData["Title"] = "Animations";
+    var fadeModel = "From Page";
 }
 
 <style>
     .fade-me-out.htmx-swapping{opacity: 0; transition: opacity 1s ease-out;}
+    #fade-me-in.htmx-added { opacity: 0;}
+    #fade-me-in{opacity: 1; transition: opacity 1s ease-out;}
 </style>
 
 <h1>Animations</h1>
@@ -14,7 +17,11 @@
 
 <h3 style="margin-top:10px;">Fade Out On Swap</h3>
 <button class="btn btn-primary fade-me-out"
-    hx-delete="animations/delete"
-    hx-swap="outerHTML swap:1s">
+        hx-delete="animations/delete"
+        hx-swap="outerHTML swap:1s">
     Fade me out    
 </button>
+
+
+<h3 style="margin-top:10px;">Fade In On Addition</h3>
+<partial name="_FadeInButton" model="fadeModel"/>

@@ -1,0 +1,9 @@
+@model string
+
+<button id="fade-me-in" 
+        class="btn btn-primary"
+        hx-post="animations/fadein"
+        hx-swap="outerHTML swap:1s">
+    @Model
+</button>
+

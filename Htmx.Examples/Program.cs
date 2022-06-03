@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Htmx.Examples.Configure.LocalDatabase;
 using Htmx.Examples.Domain.Data;
