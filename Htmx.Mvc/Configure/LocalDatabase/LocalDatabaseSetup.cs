@@ -13,7 +13,7 @@ public static class LocalDatabaseSetup
 
 		if (count == 0)
 		{
-			_ = collection.Insert(new Villain { Name = "Michael Meyers", Movie = "Halloween", Status = "Alive" });
+			_ = collection.Insert(new Villain { Name = "Michael Myers", Movie = "Halloween", Status = "Alive" });
 			_ = collection.Insert(new Villain { Name = "Jason Voorhees", Movie = "Friday the 13th", Status = "Dead" });
 			_ = collection.Insert(new Villain { Name = "Jigsaw", Movie = "Saw", Status = "Unknown" });
 			_ = collection.Insert(new Villain { Name = "Captain Spaulding", Movie = "House of 1000 Corpses", Status = "Dead" });
