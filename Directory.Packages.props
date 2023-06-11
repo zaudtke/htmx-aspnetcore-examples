@@ -1,0 +1,14 @@
+<Project>
+	<PropertyGroup>
+    	<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageVersion Include="Htmx" Version="0.0.12" />
+		<PackageVersion Include="Htmx.TagHelpers" Version="0.0.12" />
+		<PackageVersion Include="JetBrains.Annotations" Version="2021.3.0" />
+		<PackageVersion Include="LiteDB" Version="5.0.11" />
+		<PackageVersion Include="MediatR" Version="9.0.0" />
+		<PackageVersion Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+		<PackageVersion Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.0" />
+	</ItemGroup>
+</Project>

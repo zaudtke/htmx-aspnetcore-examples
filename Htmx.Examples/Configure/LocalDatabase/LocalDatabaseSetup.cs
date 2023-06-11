@@ -1,8 +1,5 @@
-using System;
-using System.Threading.Tasks;
 using Htmx.Examples.Domain.Data;
 using Htmx.Examples.Domain.Villains;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Htmx.Examples.Configure.LocalDatabase;
 

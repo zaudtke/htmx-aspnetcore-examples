@@ -1,0 +1,15 @@
+<Project>
+  <PropertyGroup>
+	  <LangVersion>latest</LangVersion>
+	  <Authors>Allen Zaudtke</Authors>
+	  <Copyright>Allen Zaudtke</Copyright>
+	  <Version>1.0</Version>
+	  <Nullable>enable</Nullable>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+	  <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	  <WarningsAsErrors />
+	  <NoWarn>$(NoWarn);1591;CS1573</NoWarn>
+	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+</Project>

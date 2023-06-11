@@ -4,13 +4,8 @@ using Htmx.Examples.Configure.LocalDatabase;
 using Htmx.Examples.Domain.Data;
 using Htmx.Examples.Domain.Villains;
 using MediatR;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
-
 
 var builder = WebApplication.CreateBuilder(args);
 

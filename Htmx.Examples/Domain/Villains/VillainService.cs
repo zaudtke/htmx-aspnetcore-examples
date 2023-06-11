@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Htmx.Examples.Domain.Data;
 using LiteDB;
 
@@ -23,7 +19,7 @@ public class VillainService
 	{
 		var dbVillain = _liteDatabase.GetCollection<Villain>(VillainCollectionName).Find(x => x.Id == id).FirstOrDefault();
 
-		if (dbVillain is null) throw new System.Exception($"Can't find Villain {id} in database");
+		if (dbVillain is null) throw new Exception($"Can't find Villain {id} in database");
 
 		return Task.FromResult(dbVillain);
 	}

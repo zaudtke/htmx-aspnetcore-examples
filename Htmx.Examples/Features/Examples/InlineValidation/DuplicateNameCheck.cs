@@ -1,6 +1,3 @@
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Htmx.Examples.Domain.Villains;
 using MediatR;
 
@@ -20,7 +17,7 @@ public class DuplicateNameCheck
 		{
 			var villains = await _service.GetAll();
 
-			return villains.Any(v => v.Name.Equals(request.Name, System.StringComparison.InvariantCultureIgnoreCase));
+			return villains.Any(v => v.Name.Equals(request.Name, StringComparison.InvariantCultureIgnoreCase));
 		}
 	}
 }

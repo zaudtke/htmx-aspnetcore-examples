@@ -1,7 +1,4 @@
 
-using System;
-using System.IO;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
 namespace Htmx.Examples.Configure.FeatureFolders;

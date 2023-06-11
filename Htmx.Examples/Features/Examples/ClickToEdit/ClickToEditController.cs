@@ -1,5 +1,4 @@
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Htmx.Examples.Features.Examples.ClickToEdit;
