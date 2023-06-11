@@ -1,4 +1,4 @@
-﻿using JetBrains.Annotations;
+using JetBrains.Annotations;
 
 [assembly: AspMvcViewLocationFormat(@"~\Features\Examples\{1}\{0}.cshtml")]
 [assembly: AspMvcPartialViewLocationFormat(@"~\Features\Examples\{1}\{0}.cshtml")]

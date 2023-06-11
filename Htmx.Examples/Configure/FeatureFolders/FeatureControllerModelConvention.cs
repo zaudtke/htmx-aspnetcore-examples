@@ -1,8 +1,8 @@
-﻿
-using Microsoft.AspNetCore.Mvc.ApplicationModels;
+
 using System;
 using System.IO;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
 namespace Htmx.Examples.Configure.FeatureFolders;
 
@@ -10,23 +10,23 @@ namespace Htmx.Examples.Configure.FeatureFolders;
 // https://github.com/OdeToCode/AddFeatureFolders/blob/276670117271f603169f9362c34ae2e722666baa/src/OdeToCode.AddFeatureFolders/FeatureControllerModelConvention.cs
 public class FeatureControllerModelConvention : IControllerModelConvention
 {
-    private const string FeaturesFolderName = "Features";
-    
-    public void Apply(ControllerModel model)
-    {
-        if(model == null) throw new ArgumentNullException(nameof(model));
+	private const string FeaturesFolderName = "Features";
 
-        var featureName = DeriveFeatureFolderName(model);
-        model.Properties.Add("feature", featureName);
-    }
+	public void Apply(ControllerModel model)
+	{
+		if (model == null) throw new ArgumentNullException(nameof(model));
+
+		var featureName = DeriveFeatureFolderName(model);
+		model.Properties.Add("feature", featureName);
+	}
 
 
-    private string DeriveFeatureFolderName(ControllerModel model)
-    {
-        var @namespace = model.ControllerType.Namespace;
-        var result = @namespace?.Split('.')
-            .SkipWhile(s => s != FeaturesFolderName)
-            .Aggregate("", Path.Combine);
-        return result ?? string.Empty;
-    }
+	private string DeriveFeatureFolderName(ControllerModel model)
+	{
+		var @namespace = model.ControllerType.Namespace;
+		var result = @namespace?.Split('.')
+			.SkipWhile(s => s != FeaturesFolderName)
+			.Aggregate("", Path.Combine);
+		return result ?? string.Empty;
+	}
 }

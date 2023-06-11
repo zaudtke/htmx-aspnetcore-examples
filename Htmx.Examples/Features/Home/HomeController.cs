@@ -1,17 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Htmx.Examples.Features.Home;
 public class HomeController : Controller
 {
 
-    public HomeController()
-    {
-    }
+	public HomeController()
+	{
+	}
 
-    [HttpGet, Route("")]
-    public IActionResult Index()
-    {
-        return View();
-    }
+	[HttpGet, Route("")]
+	public IActionResult Index() => View();
 
 }

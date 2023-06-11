@@ -1,30 +1,30 @@
-﻿using Htmx.Examples.Domain.Villains;
-using MediatR;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Linq;
+using Htmx.Examples.Domain.Villains;
+using MediatR;
 
 namespace Htmx.Examples.Features.Examples.DeleteRow;
 
 public class ViewVillains
 {
-    public record Query() : IRequest<Result>;
+	public record Query() : IRequest<Result>;
 
-    public record Result(IEnumerable<Villain> Villains);
+	public record Result(IEnumerable<Villain> Villains);
 
-    public record Villain(int Id, string Name, string Movie, string Status);
+	public record Villain(int Id, string Name, string Movie, string Status);
 
-    public class QueryHandler : IRequestHandler<Query, Result>
-    {
-        private readonly VillainService _villainService;
+	public class QueryHandler : IRequestHandler<Query, Result>
+	{
+		private readonly VillainService _villainService;
 
-        public QueryHandler(VillainService service) => _villainService = service;
+		public QueryHandler(VillainService service) => _villainService = service;
 
-        public async Task<Result> Handle(Query request, CancellationToken cancellationToken)
-        {
-            var villains = await _villainService.GetAll();
-            return new Result(villains.Select(v => new Villain(v.Id, v.Name, v.Movie, v.Status)));
-        }
-    }
+		public async Task<Result> Handle(Query request, CancellationToken cancellationToken)
+		{
+			var villains = await _villainService.GetAll();
+			return new Result(villains.Select(v => new Villain(v.Id, v.Name, v.Movie, v.Status)));
+		}
+	}
 }
