@@ -12,7 +12,6 @@
 		<PackageReference Include="JetBrains.Annotations" />
 		<PackageReference Include="LiteDB" />
 		<PackageReference Include="MediatR" />
-		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" />
 	</ItemGroup>
 </Project>

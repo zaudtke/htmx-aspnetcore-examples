@@ -3,7 +3,6 @@ using Htmx.Mvc.Configure.FeatureFolders;
 using Htmx.Mvc.Configure.LocalDatabase;
 using Htmx.Mvc.Domain.Data;
 using Htmx.Mvc.Domain.Villains;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
 
@@ -32,7 +31,7 @@ builder.Services.Configure<RazorViewEngineOptions>(options =>
 	options.ViewLocationFormats.Add("/Features/{1}/{0}.cshtml"); // default: /Features/{0}/{1}.cshtml
 	options.ViewLocationExpanders.Add(new FeatureViewLocationExpander());
 });
-builder.Services.AddMediatR(typeof(Program));
+builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblyContaining<Program>());
 
 var app = builder.Build();
 
