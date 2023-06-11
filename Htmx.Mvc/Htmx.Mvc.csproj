@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<AssemblyName>Htmx.Mvc</AssemblyName>
+		<RootNamespace>Htmx.Mvc</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Htmx" />
+		<PackageReference Include="Htmx.TagHelpers" />
+		<PackageReference Include="JetBrains.Annotations" />
+		<PackageReference Include="LiteDB" />
+		<PackageReference Include="MediatR" />
+		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" />
+	</ItemGroup>
+</Project>

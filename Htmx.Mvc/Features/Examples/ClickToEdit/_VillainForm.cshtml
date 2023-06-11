@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNetCore.Routing
+@model Htmx.Mvc.Features.Examples.ClickToEdit.EditVillain.Result
+
+<form hx-post="@Url.Action("Edit", "ClickToEdit", new RouteValueDictionary{{"id", @Model?.Villain.Id}})" hx-target="this" hx-swap="outerHTML">
+    <div class="form-group">
+        <label asp-for="Villain.Name">Name</label>
+        <input type="text" class="form-control" asp-for="Villain.Name">
+    </div>
+    <div class="form-group">
+        <label asp-for="Villain.Movie">Movie</label>
+        <input type="text" class="form-control" asp-for="Villain.Movie">
+    </div>
+    <div>
+        <label>Status</label>
+    </div>
+    <div class="form-group">
+        <div class="form-check form-check-inline">
+        <input type="radio" class="form-check-input" id="radio1" asp-for=Villain.Status value="Alive" />
+        <label class="form-check-label" for="radio1">Alive</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input type="radio" class="form-check-input" id="radio2" asp-for=Villain.Status value="Dead" />
+        <label class="form-check-label" for="radio2">Dead</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input type="radio" class="form-check-input" id="radio3" asp-for=Villain.Status value="Unknown" />
+        <label class="form-check-label" for="radio3">Unknown</label>
+    </div>
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit">Submit</button>&nbsp;<button class="btn btn-danger" hx-get="@Url.Action("Index", "ClickToEdit")">Cancel</button>
+    </div>
+    @Html.HiddenFor(m => m.Villain.Id)
+    @Html.AntiForgeryToken()
+</form>

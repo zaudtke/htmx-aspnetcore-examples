@@ -1,0 +1,33 @@
+﻿
+@model Htmx.Mvc.Features.Examples.ActiveSearch.SearchVillains.Result
+@{
+    ViewData["Title"] = "Active Search";
+}
+
+
+<h3>
+    Search Contacts
+    <span class="htmx-indicator">
+        <img src="~/img/spiral.gif" /> Searching...
+    </span>
+</h3>
+
+<input class="form-control" type="text"
+    name="search" placeholder="Begin Typing to Search Villains..."
+    hx-post="/examples/active-search"
+    hx-trigger="keyup changed delay:500ms"
+    hx-target="#search-results"
+    hx-indicator=".htmx-indicator" />
+
+<table class="table">
+    <thead class=thead-dark>
+        <tr>
+            <th>Name</th>
+            <th>Movie</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody id="search-results">
+        <partial name="_SearchResults" model=Model />
+    </tbody>
+</table>

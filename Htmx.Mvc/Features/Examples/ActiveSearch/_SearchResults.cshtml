@@ -1,0 +1,10 @@
+﻿@model Htmx.Mvc.Features.Examples.ActiveSearch.SearchVillains.Result
+
+@foreach (var villain in Model!.Villains)
+{
+    <tr>
+        <td>@villain.Name</td>
+        <td>@villain.Movie</td>
+        <td>@villain.Status</td>
+    </tr>
+}
