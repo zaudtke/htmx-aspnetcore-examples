@@ -1,0 +1,28 @@
+﻿@model Htmx.Mvc.Features.Examples.CascadingSelect.ViewMoviesBySeries.QueryResult
+
+@{
+    ViewData["Title"] = "Cascading Selects";
+}
+
+<h1>Cascading Selects</h1>
+<form>
+    <div class="form-group">
+        <label for="series">Series</label>
+        <select class="form-control" id="series" name="series"
+            hx-get="cascading-select/movies"
+            hx-target="#movies"
+            hx-indicator=".htmx-indicator">
+
+            @foreach(var series in Model!.Series)
+            {
+                <option value="@series">@series</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="moives">Movies</label>
+        <select class="form-control" id="movies" name="movie">
+            <partial name="_MovieOptions" model="@Model?.Movies"></partial>
+        </select>
+    </div>
+</form>

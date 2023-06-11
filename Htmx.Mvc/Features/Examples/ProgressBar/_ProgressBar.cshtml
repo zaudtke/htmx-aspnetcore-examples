@@ -1,0 +1,18 @@
+﻿@model Htmx.Mvc.Features.Examples.ProgressBar.ProgressBarModel
+
+<div hx-target="this"
+    hx-get='progress-bar/status/@Model?.Percentage'
+    hx-trigger="@Model?.Trigger"
+    hx-swap="outerHTML">
+
+    <h3>@Model?.HeaderMessage</h3>
+    <div class="progress">
+        <div id="pb" class="progress-bar" style='width:@Model?.Percentage%'></div>
+    </div>
+
+    @if(Model?.Percentage >= 100)
+    {
+        <button id="restart-btn" class="btn btn-primary" hx-post="progress-bar/start" classes="add show:600ms">Restart</button>
+    }
+
+</div>

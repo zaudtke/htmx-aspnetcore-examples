@@ -1,0 +1,30 @@
+﻿@model Htmx.Mvc.Features.Examples.DeleteRow.ViewVillains.Result
+
+
+@{
+    ViewData["Title"] = "Delete Row";
+}
+
+<table class="table">
+    <thead class=thead-dark>
+        <tr>
+            <th>Name</th>
+            <th>Movie</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody hx-confirm="Are you sure?" hx-target="closest tr" hx-swap="outerHTML swap:1s">
+        @foreach (var villain in Model!.Villains)
+        {
+            <tr>
+                <td>@villain.Name</td>
+                <td>@villain.Movie</td>
+                <td>@villain.Status</td>
+                <td>
+                    <button class="btn btn-danger" hx-post=@($"/examples/delete-row/{villain.Id}")>Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,15 @@
+﻿@model Htmx.Mvc.Features.Examples.InlineValidation.CreateVillain.Command
+
+
+@{
+    ViewData["Title"] = "Inline Validation";
+}
+
+<h2>Add a Villain</h2>
+
+<partial name="_CreateVillainForm" model=@Model />
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,25 @@
+﻿@model Htmx.Mvc.Features.Examples.BulkUpdate.ViewVillains.Result;
+
+@{
+    ViewData["Title"] = "Builk Update";
+}
+
+<form id="checked-villains">
+    <table class="table">
+      <thead class=thead-dark>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Movie</th>
+            <th>Status</th>
+          </tr>
+      </thead>
+      <tbody id="tbody">
+        <partial name="_VillainRows" model=Model?.Villains />
+      </tbody>
+    </table>
+</form>
+<div hx-include="#checked-villains" hx-target="#tbody" style="padding-top:2em;">
+    <a class="btn btn-danger" hx-post="/examples/bulk-update/kill" href="" style="width:6em;">Kill</a>
+    <a class="btn btn-success" hx-post="/examples/bulk-update/resurect" href=""style="width:6em;">Resurect</a>
+</div>
