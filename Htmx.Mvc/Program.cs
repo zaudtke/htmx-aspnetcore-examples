@@ -7,6 +7,10 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
 
+// Disable warnings for Expression Value is never used
+// Discard Characters in this file make it "ugly"
+#pragma warning disable IDE0058
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -37,13 +41,15 @@ await LocalDatabaseSetup.EnsureDb(app.Services);
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-	_ = app.UseDeveloperExceptionPage();
+
+	app.UseDeveloperExceptionPage();
+
 }
 else
 {
-	_ = app.UseExceptionHandler("/Error");
+	app.UseExceptionHandler("/Error");
 	// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-	_ = app.UseHsts();
+	app.UseHsts();
 }
 
 app.UseHttpsRedirection();
@@ -56,4 +62,5 @@ app.MapControllers();
 
 app.Run();
 
-
+// Enable warnings for Expression Value is never used
+#pragma warning restore IDE0058
