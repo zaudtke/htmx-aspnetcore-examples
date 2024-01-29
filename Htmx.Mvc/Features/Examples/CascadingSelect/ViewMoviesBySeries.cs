@@ -12,17 +12,17 @@ public class ViewMoviesBySeries
 	{
 		public Task<QueryResult> Handle(Query request, CancellationToken cancellationToken) => Task.FromResult(new QueryResult(GetCollections(), GetMovies(request.Series)));
 
-		private List<string> GetCollections() => new List<string>
-			{
-				"Marvel",
-				"StarWars"
-			};
+		private List<string> GetCollections() =>
+		[
+			"Marvel",
+			"StarWars"
+		];
 
 		private List<string> GetMovies(string genre) => genre switch
 		{
-			"Marvel" => new List<string> { "Iron Man", "Thor", "Dr. Strange" },
-			"StarWars" => new List<string> { "A New Hope", "The Empire Strikes Back", "Return of the Jedi" },
-			_ => new List<string>()
+			"Marvel" => ["Iron Man", "Thor", "Dr. Strange"],
+			"StarWars" => ["A New Hope", "The Empire Strikes Back", "Return of the Jedi"],
+			_ => []
 		};
 	}
 
