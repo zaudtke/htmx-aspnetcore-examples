@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".config", ".config", "{614C
 		.config\dotnet-tools.json = .config\dotnet-tools.json
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Htmx.RazorPages", "Htmx.RazorPages\Htmx.RazorPages.csproj", "{ACB8ECF7-C823-4539-ACCD-AD192430CCFA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{09782BED-307B-4CAC-89E7-27EC1229FA2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09782BED-307B-4CAC-89E7-27EC1229FA2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09782BED-307B-4CAC-89E7-27EC1229FA2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACB8ECF7-C823-4539-ACCD-AD192430CCFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACB8ECF7-C823-4539-ACCD-AD192430CCFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACB8ECF7-C823-4539-ACCD-AD192430CCFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACB8ECF7-C823-4539-ACCD-AD192430CCFA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
